@@ -91,6 +91,7 @@ button {
 }
 
 #yesBtn {
+  position: static;
   background: #ff4d6d;
   color: white;
 }
@@ -100,11 +101,15 @@ button {
   color: white;
   position: fixed;
   max-width: 120px;
+  z-indez: 999;
 }
 
 /* BUTTON CONTAINER */
 .buttons {
-
+  position: Fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   height: 120px;
   margin-top: 20px;
 }
@@ -184,6 +189,7 @@ button {
   z-index: 9999;
   display: none;
 }
+
 
 
 
