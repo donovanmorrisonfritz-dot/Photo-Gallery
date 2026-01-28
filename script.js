@@ -50,8 +50,8 @@ function typeText() {
 // RUNAWAY NO BUTTON
 function moveNoButton() {
   const container = document.querySelector(".buttons");
-  const maxX = container.offsetWidth - noBtn.offsetWidth - 10;
-  const maxY = container.offsetHeight - noBtn.offsetHeight - 10;
+  const maxX = container.offsetWidth - noBtn.offsetWidth - 50;
+  const maxY = container.offsetHeight - noBtn.offsetHeight - 50;
 
   noBtn.style.left = Math.random() * maxX + "px";
   noBtn.style.top = Math.random() * maxY + "px";
@@ -143,4 +143,5 @@ closeImage.onclick = closeModal;
 modal.onclick = e => {
   if (e.target === modal) closeModal();
 };
+
 
