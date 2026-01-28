@@ -104,7 +104,7 @@ button {
 
 /* BUTTON CONTAINER */
 .buttons {
-  position: relative;
+
   height: 120px;
   margin-top: 20px;
 }
@@ -184,6 +184,7 @@ button {
   z-index: 9999;
   display: none;
 }
+
 
 
 
