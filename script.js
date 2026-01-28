@@ -48,14 +48,46 @@ function typeText() {
 }
 
 // RUNAWAY NO BUTTON
-function moveNoButton() {
+function moveNoButton(e) {
   const container = document.querySelector(".buttons");
-  const maxX = window.offsetWidth - noBtn.offsetWidth - 150;
-  const maxY = window.offsetHeight - noBtn.offsetHeight - 150;
+  const rect = container.getBoundingClientRect();
 
-  noBtn.style.left = Math.random() * maxX + "px";
-  noBtn.style.top = Math.random() * maxY + "px";
+  const btnRect = noBtn.getBoundingClientRect();
+
+  // Mouse position relative to container
+  const mouseX = e.clientX - rect.left;
+  const mouseY = e.clientY - rect.top;
+
+  // Button center
+  const btnX = btnRect.left - rect.left + btnRect.width / 2;
+  const btnY = btnRect.top - rect.top + btnRect.height / 2;
+
+  // Direction away from mouse
+  let dx = btnX - mouseX;
+  let dy = btnY - mouseY;
+
+  const distance = Math.sqrt(dx * dx + dy * dy) || 1;
+
+  // Normalize + push strength
+  dx /= distance;
+  dy /= distance;
+
+  const moveAmount = 80; // 👈 increase for more chaos
+
+  let newX = btnX + dx * moveAmount - btnRect.width / 2;
+  let newY = btnY + dy * moveAmount - btnRect.height / 2;
+
+  // Clamp inside container
+  const maxX = container.offsetWidth - btnRect.width;
+  const maxY = container.offsetHeight - btnRect.height;
+
+  newX = Math.max(0, Math.min(newX, maxX));
+  newY = Math.max(0, Math.min(newY, maxY));
+
+  noBtn.style.left = newX + "px";
+  noBtn.style.top = newY + "px";
 }
+
 
 noBtn.addEventListener("mousemove", moveNoButton);
 noBtn.addEventListener("mouseenter", moveNoButton);
@@ -143,6 +175,7 @@ closeImage.onclick = closeModal;
 modal.onclick = e => {
   if (e.target === modal) closeModal();
 };
+
 
 
 
