@@ -110,8 +110,10 @@ button {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 120px;
-  margin-top: 20px;
+  diplay: flex;
+  gap: 80px;
+  z-index: 5;
+  
 }
 
 /* LETTER */
@@ -189,6 +191,7 @@ button {
   z-index: 9999;
   display: none;
 }
+
 
 
 
