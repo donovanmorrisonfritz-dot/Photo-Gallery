@@ -27,14 +27,14 @@ const ctx = canvas.getContext("2d");
 let pieces = [];
 let confettiInterval;
 
-// ---------- PAGE FLOW ----------
+// PAGE FLOW
 enterBtn.onclick = () => {
   intro.classList.remove("active");
   valentine.classList.add("active");
   typeText();
 };
 
-// ---------- TYPE EFFECT ----------
+// TYPE EFFECT
 const text = "Will you be my Valentine? 💘";
 
 function typeText() {
@@ -47,20 +47,19 @@ function typeText() {
   }, 80);
 }
 
-// ---------- RUNAWAY NO BUTTON ----------
+// RUNAWAY NO BUTTON
 function moveNoButton() {
   const container = document.querySelector(".buttons");
-  const maxX = container.offsetWidth - noBtn.offsetWidth;
-  const maxY = container.offsetHeight - noBtn.offsetHeight;
+  const maxX = container.offsetWidth - noBtn.offsetWidth - 10;
+  const maxY = container.offsetHeight - noBtn.offsetHeight - 10;
 
   noBtn.style.left = Math.random() * maxX + "px";
   noBtn.style.top = Math.random() * maxY + "px";
 }
 
 noBtn.addEventListener("mouseenter", moveNoButton);
-noBtn.addEventListener("mouseover", moveNoButton);
 
-// ---------- CONFETTI ----------
+// CONFETTI
 function resizeCanvas() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -90,7 +89,7 @@ function drawConfetti() {
   });
 }
 
-// ---------- YES BUTTON ----------
+// YES BUTTON
 yesBtn.onclick = () => {
   canvas.style.display = "block";
   makeConfetti();
@@ -98,35 +97,33 @@ yesBtn.onclick = () => {
 
   setTimeout(() => {
     clearInterval(confettiInterval);
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
     canvas.style.display = "none";
-
     valentine.classList.remove("active");
     letter.classList.add("active");
   }, 2500);
 };
 
-// ---------- BACK BUTTON ----------
+// BACK BUTTON
 backBtn.onclick = () => {
   letter.classList.remove("active");
   intro.classList.add("active");
 };
 
-// ---------- PHOTO MODAL ----------
+// PHOTO MODAL
 document.querySelectorAll(".gallery img").forEach(img => {
   img.onclick = () => {
-    modal.style.display = "block";
+    modal.style.display = "flex";
     modalImg.style.display = "block";
     modalText.style.display = "none";
 
     modalImg.src = img.src;
-    modalCaption.textContent = img.dataset.caption || "";
+    modalCaption.textContent = img.dataset.caption;
   };
 });
 
-// ---------- LETTER MODAL ----------
+// LETTER MODAL
 letterBox.onclick = () => {
-  modal.style.display = "block";
+  modal.style.display = "flex";
   modalImg.style.display = "none";
   modalText.style.display = "block";
 
@@ -134,7 +131,7 @@ letterBox.onclick = () => {
   modalCaption.textContent = "My Love Letter 💌";
 };
 
-// ---------- CLOSE MODAL ----------
+// CLOSE MODAL
 function closeModal() {
   modal.style.display = "none";
   modalImg.src = "";
