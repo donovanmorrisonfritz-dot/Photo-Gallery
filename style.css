@@ -98,7 +98,7 @@ button {
 #noBtn {
   background: #ffb3c1;
   color: white;
-  position: absolute;
+  position: fixed;
   max-width: 120px;
 }
 
@@ -184,5 +184,6 @@ button {
   z-index: 9999;
   display: none;
 }
+
 
 
