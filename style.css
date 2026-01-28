@@ -152,6 +152,10 @@ button {
   max-height: 75vh;
   border-radius: 20px;
 }
+#modalImg,
+#modalText {
+  display: none;
+}
 
 #modalText {
   background: #fff0f3;
@@ -180,4 +184,5 @@ button {
   z-index: 9999;
   display: none;
 }
+
 
