@@ -1,25 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Will You Be My Valentine? 💘</title>
+  <meta charset="UTF-8">
+  <title>Valentine 💕</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<!-- PHOTO PAGE -->
+<div id="intro" class="page active fade">
   <div class="container">
-    <h1>Hey my love 💕</h1>
-    <p>I have an important question for you...</p>
-    <h2>Will you be my Valentine? 💘</h2>
+    <h1>Us 💕</h1>
+    <p>Some moments I really love</p>
 
-    <div class="buttons">
-      <button id="yesBtn">Yes 💖</button>
-      <button id="noBtn">No 😢</button>
+    <div class="gallery">
+      <img src="photo1.jpg" data-caption="Our first memory 💖">
+      <img src="photo2.jpg" data-caption="One of my favorites 🥰">
+      <img src="photo3.jpg" data-caption="Always you 💕">
     </div>
 
-    <p id="response"></p>
+    <button id="enterBtn">Continue</button>
   </div>
+</div>
 
-  <script src="script.js"></script>
+<!-- VALENTINE PAGE -->
+<div id="valentine" class="page fade">
+  <div class="container">
+    <h1>Hey my love 💖</h1>
+    <h2 id="question"></h2>
+
+    <div class="buttons">
+      <button id="yesBtn">Yes 💘</button>
+      <button id="noBtn">No 🥺</button>
+    </div>
+  </div>
+</div>
+
+<!-- LETTER PAGE -->
+<div id="letter" class="page fade">
+  <div class="container">
+    <h1>My Love Letter 💌</h1>
+
+    <div id="letterBox">
+      <p>
+        I don’t know how to fully put into words how much you mean to me.
+        Every moment with you feels like home, and every day with you is
+        something I’m grateful for. I love you more than I can ever explain 💕
+      </p>
+    </div>
+
+    <button id="backBtn">⬅ Back to Photos</button>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div id="imageModal">
+  <p id="modalCaption"></p>
+
+  <img id="modalImg">
+  <div id="modalText"></div>
+
+  <span id="closeImage">&times;</span>
+</div>
+
+<!-- CONFETTI -->
+<canvas id="confetti"></canvas>
+
+<script src="script.js"></script>
 </body>
 </html>
