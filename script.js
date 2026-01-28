@@ -57,6 +57,7 @@ function moveNoButton() {
   noBtn.style.top = Math.random() * maxY + "px";
 }
 
+noBtn.addEventListener("mousemove", moveNoButton);
 noBtn.addEventListener("mouseenter", moveNoButton);
 
 // CONFETTI
@@ -142,3 +143,4 @@ closeImage.onclick = closeModal;
 modal.onclick = e => {
   if (e.target === modal) closeModal();
 };
+
