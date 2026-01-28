@@ -62,17 +62,20 @@ function moveNoButton(e) {
 
   const distance = Math.sqrt(dx * dx + dy * dy) || 1;
 
-  // Normalize direction
+  const safeDistance = 120;
+
+  // Only run if the cursor is close
+  if (distance > safeDistance) return;
+
   dx /= distance;
   dy /= distance;
 
-  // 🚀 BIG jump distance
-  const jumpDistance = 220;
+  // 👟 Smaller steps = visible running
+  const step = 60;
 
-  let newX = btnCenterX + dx * jumpDistance - btnRect.width / 2;
-  let newY = btnCenterY + dy * jumpDistance - btnRect.height / 2;
+  let newX = btnCenterX + dx * step - btnRect.width / 2;
+  let newY = btnCenterY + dy * step - btnRect.height / 2;
 
-  // Keep on screen
   const padding = 20;
   const maxX = window.innerWidth - btnRect.width - padding;
   const maxY = window.innerHeight - btnRect.height - padding;
@@ -84,6 +87,8 @@ function moveNoButton(e) {
   noBtn.style.top = newY + "px";
 }
   
+}
+  
 // Center No button initially
 function centerNoButton() {
   const yesRect = yesBtn.getBoundingClientRect();
@@ -93,8 +98,9 @@ function centerNoButton() {
 
 centerNoButton();
 
+
 noBtn.addEventListener("mousemove", moveNoButton);
-noBtn.addEventListener("mouseenter", moveNoButton);
+document.addEventListener("mouseenter", moveNoButton);
 
 // CONFETTI
 function resizeCanvas() {
@@ -179,6 +185,7 @@ closeImage.onclick = closeModal;
 modal.onclick = e => {
   if (e.target === modal) closeModal();
 };
+
 
 
 
