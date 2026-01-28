@@ -14,9 +14,18 @@
     <p>Some moments I really love</p>
 
     <div class="gallery">
-      <img src="photo1.jpg" data-caption="Our first memory 💖">
-      <img src="photo2.jpg" data-caption="One of my favorites 🥰">
-      <img src="photo3.jpg" data-caption="Always you 💕">
+      <div class="photo">
+        <img src="photo1.jpg" data-caption="Our first memory 💖">
+        <span>Our first memory 💖</span>
+      </div>
+      <div class="photo">
+        <img src="photo2.jpg" data-caption="One of my favorites 🥰">
+        <span>One of my favorites 🥰</span>
+      </div>
+      <div class="photo">
+        <img src="photo3.jpg" data-caption="Always you 💕">
+        <span>Always you 💕</span>
+      </div>
     </div>
 
     <button id="enterBtn">Continue</button>
@@ -55,12 +64,12 @@
 
 <!-- MODAL -->
 <div id="imageModal">
-  <p id="modalCaption"></p>
-
-  <img id="modalImg">
-  <div id="modalText"></div>
-
-  <span id="closeImage">&times;</span>
+  <div class="modalContent">
+    <p id="modalCaption"></p>
+    <img id="modalImg">
+    <div id="modalText"></div>
+    <span id="closeImage">&times;</span>
+  </div>
 </div>
 
 <!-- CONFETTI -->
