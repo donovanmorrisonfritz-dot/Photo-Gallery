@@ -49,44 +49,41 @@ function typeText() {
 
 // RUNAWAY NO BUTTON
 function moveNoButton(e) {
-  const container = document.querySelector(".buttons");
-  const rect = container.getBoundingClientRect();
-
   const btnRect = noBtn.getBoundingClientRect();
 
-  // Mouse position relative to container
-  const mouseX = e.clientX - rect.left;
-  const mouseY = e.clientY - rect.top;
+  const mouseX = e.clientX;
+  const mouseY = e.clientY;
 
-  // Button center
-  const btnX = btnRect.left - rect.left + btnRect.width / 2;
-  const btnY = btnRect.top - rect.top + btnRect.height / 2;
+  const btnCenterX = btnRect.left + btnRect.width / 2;
+  const btnCenterY = btnRect.top + btnRect.height / 2;
 
-  // Direction away from mouse
-  let dx = btnX - mouseX;
-  let dy = btnY - mouseY;
+  let dx = btnCenterX - mouseX;
+  let dy = btnCenterY - mouseY;
 
   const distance = Math.sqrt(dx * dx + dy * dy) || 1;
 
-  // Normalize + push strength
+  // Normalize direction
   dx /= distance;
   dy /= distance;
 
-  const moveAmount = 80; // 👈 increase for more chaos
+  // 🚀 BIG jump distance
+  const jumpDistance = 220;
 
-  let newX = btnX + dx * moveAmount - btnRect.width / 2;
-  let newY = btnY + dy * moveAmount - btnRect.height / 2;
+  let newX = btnCenterX + dx * jumpDistance - btnRect.width / 2;
+  let newY = btnCenterY + dy * jumpDistance - btnRect.height / 2;
 
-  // Clamp inside container
-  const maxX = container.offsetWidth - btnRect.width;
-  const maxY = container.offsetHeight - btnRect.height;
+  // Keep on screen
+  const padding = 20;
+  const maxX = window.innerWidth - btnRect.width - padding;
+  const maxY = window.innerHeight - btnRect.height - padding;
 
-  newX = Math.max(0, Math.min(newX, maxX));
-  newY = Math.max(0, Math.min(newY, maxY));
+  newX = Math.max(padding, Math.min(newX, maxX));
+  newY = Math.max(padding, Math.min(newY, maxY));
 
   noBtn.style.left = newX + "px";
   noBtn.style.top = newY + "px";
 }
+  
 
 
 noBtn.addEventListener("mousemove", moveNoButton);
@@ -175,6 +172,7 @@ closeImage.onclick = closeModal;
 modal.onclick = e => {
   if (e.target === modal) closeModal();
 };
+
 
 
 
