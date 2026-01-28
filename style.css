@@ -130,7 +130,6 @@ button {
   inset: 0;
   background: rgba(0,0,0,0.85);
   z-index: 10000;
-  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -181,3 +180,4 @@ button {
   z-index: 9999;
   display: none;
 }
+
