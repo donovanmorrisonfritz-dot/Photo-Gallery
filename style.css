@@ -207,13 +207,13 @@ button {
   line-height: 1.5;
   opacity: 0.25;
   white-space: nowrap;
-  animation: floatHearts 10s linear infinite;
+  animation: floatHearts 5s linear infinite;
 }
 
 .hearts::after {
   font-size: 44px;
   opacity: 0.15;
-  animation-duration: 12s; /* slightly different speed */
+  animation-duration: 5s; /* slightly different speed */
 }
 
 /* FLOAT UP */
@@ -230,4 +230,5 @@ button {
     opacity: 0;
   }
 }
+
 
