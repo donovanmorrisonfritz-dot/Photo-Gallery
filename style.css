@@ -200,17 +200,18 @@ button {
 .hearts::after {
   content: "💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘";
   position: absolute;
-  width: 200vw;
+  top: 0;
   left: -50vw;
-
-  /* 🔥 THIS IS THE IMPORTANT PART */
-  top: 100vh;              /* start BELOW screen */
+  width: 200vw;
 
   font-size: 36px;
   line-height: 3;
   opacity: 0.25;
-  animation: floatHearts 15s linear infinite;
   white-space: normal;
+
+  /* 🚨 THIS is the real fix */
+  transform: translateY(100vh);
+  animation: floatHearts 30s linear infinite;
 }
 
 .hearts::after {
@@ -222,7 +223,7 @@ button {
 /* MOVE FROM BOTTOM → PAST TOP */
 @keyframes floatHearts {
   from {
-    transform: translateY(0);
+    transform: translateY(100vh);
   }
   to {
     transform: translateY(-300vh);
