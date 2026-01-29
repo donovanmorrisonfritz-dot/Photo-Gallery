@@ -186,7 +186,6 @@ button {
   z-index: 9999;
   display: none;
 }
-
 /* FLOATING HEART BACKGROUND */
 .hearts {
   position: fixed;
@@ -198,18 +197,22 @@ button {
 
 .hearts::before,
 .hearts::after {
-  content: "💖 💕 💗 💓 💘";
+  content: "💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘";
   position: absolute;
-  width: 100%;
+  width: 200%;
   height: 200%;
-  font-size: 32px;
-  opacity: 0.25;
-  animation: floatHearts 18s linear infinite;
+  left: -50%;
+  top: 100%;
+  font-size: 36px;
+  opacity: 0.3;
+  line-height: 2.5;
+  animation: floatHearts 20s linear infinite;
 }
 
 .hearts::after {
-  animation-duration: 25s;
-  opacity: 0.15;
+  animation-duration: 40s;
+  opacity: 0.18;
+  font-size: 42px;
 }
 
 @keyframes floatHearts {
@@ -217,15 +220,7 @@ button {
     transform: translateY(0);
   }
   to {
-    transform: translateY(-50%);
+    transform: translateY(-200%);
   }
 }
-
-
-
-
-
-
-
-
 
