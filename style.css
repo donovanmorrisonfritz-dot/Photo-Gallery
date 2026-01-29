@@ -13,6 +13,8 @@ body {
 
 /* PAGE SYSTEM */
 .page {
+  position: relative;
+  z-index: 2;
   display: none;
   height: 100vh;
   width: 100vw;
@@ -183,6 +185,40 @@ button {
   pointer-events: none;
   z-index: 9999;
   display: none;
+}
+
+/* FLOATING HEART BACKGROUND */
+.hearts {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hearts::before,
+.hearts::after {
+  content: "💖 💕 💗 💓 💘";
+  position: absolute;
+  width: 100%;
+  height: 200%;
+  font-size: 32px;
+  opacity: 0.25;
+  animation: floatHearts 18s linear infinite;
+}
+
+.hearts::after {
+  animation-duration: 25s;
+  opacity: 0.15;
+}
+
+@keyframes floatHearts {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
 }
 
 
