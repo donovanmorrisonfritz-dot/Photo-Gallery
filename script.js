@@ -87,7 +87,6 @@ function moveNoButton(e) {
   noBtn.style.top = newY + "px";
 }
   
-}
   
 // Center No button initially
 function centerNoButton() {
@@ -185,6 +184,7 @@ closeImage.onclick = closeModal;
 modal.onclick = e => {
   if (e.target === modal) closeModal();
 };
+
 
 
 
