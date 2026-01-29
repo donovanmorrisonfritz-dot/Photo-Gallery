@@ -33,9 +33,17 @@ enterBtn.onclick = () => {
   intro.classList.remove("active");
   valentine.classList.add("active");
   typeText();
-  setTimeout(() => {
-    noCanRun = true;
-  }, 1500);
+
+  noCanRun = false; 
+
+  noBtn.style.left = "0px";
+  noBtn.style.top = "0px";
+
+  requestAnimationFrame(() =>{ 
+    positionNoButtonBesideYes();
+    setTimeout(() => {
+      noCanRun = true;
+    });
 };
 
 // TYPE EFFECT
@@ -200,6 +208,7 @@ closeImage.onclick = closeModal;
 modal.onclick = e => {
   if (e.target === modal) closeModal();
 };
+
 
 
 
