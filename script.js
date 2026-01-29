@@ -43,22 +43,20 @@ function typeText() {
 
 // ===== BUTTON POSITIONING =====
 function positionButtons() {
-  const container = document.querySelector(".buttons");
-  const rect = container.getBoundingClientRect();
-
   const gap = 160;
-  const y = rect.top + 20;
 
   const centerX = window.innerWidth / 2;
+  const centerY = window.innerHeight * 0.62; // lower on screen
 
   yesBtn.style.position = "fixed";
   yesBtn.style.left = `${centerX - yesBtn.offsetWidth - gap / 2}px`;
-  yesBtn.style.top = `${y}px`;
+  yesBtn.style.top = `${centerY}px`;
 
   noBtn.style.position = "fixed";
   noBtn.style.left = `${centerX + gap / 2}px`;
-  noBtn.style.top = `${y}px`;
+  noBtn.style.top = `${centerY}px`;
 }
+  
 
 // ===== PAGE FLOW =====
 enterBtn.onclick = () => {
@@ -201,4 +199,5 @@ closeImage.onclick = closeModal;
 modal.onclick = e => {
   if (e.target === modal) closeModal();
 };
+
 
