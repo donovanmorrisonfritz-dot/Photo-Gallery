@@ -195,32 +195,36 @@ button {
   pointer-events: none;
 }
 
+/* HEART LAYERS */
 .hearts::before,
 .hearts::after {
-  content: "💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘";
+  content: "💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘";
   position: absolute;
-  width: 200%;
-  height: 200%;
-  left: -50%;
-  top: 100%;
+  width: 200vw;
+  left: -50vw;
+
+  /* 🔥 THIS IS THE IMPORTANT PART */
+  top: 100vh;              /* start BELOW screen */
+
   font-size: 36px;
-  opacity: 0.3;
-  line-height: 2.5;
-  animation: floatHearts 20s linear infinite;
+  line-height: 3;
+  opacity: 0.25;
+  animation: floatHearts 15s linear infinite;
+  white-space: normal;
 }
 
 .hearts::after {
-  animation-duration: 40s;
-  opacity: 0.18;
-  font-size: 42px;
+  font-size: 44px;
+  opacity: 0.15;
+  animation-duration: 45s;
 }
 
+/* MOVE FROM BOTTOM → PAST TOP */
 @keyframes floatHearts {
   from {
     transform: translateY(0);
   }
   to {
-    transform: translateY(-200%);
+    transform: translateY(-300vh);
   }
 }
-
