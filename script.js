@@ -46,6 +46,17 @@ function typeText() {
     if (i >= text.length) clearInterval(interval);
   }, 80);
 }
+function positionNoButtonBesideYes() {
+  const yesRect = yesBtn.getBoundingClientRect();
+
+  const gap = 140; // match your CSS gap
+
+  const noX = yesRect.right + gap;
+  const noY = yesRect.top;
+
+  noBtn.style.left = `${noX}px`;
+  noBtn.style.top = `${noY}px`;
+}
 
 // RUNAWAY NO BUTTON
 function moveNoButton(e) {
@@ -184,6 +195,7 @@ closeImage.onclick = closeModal;
 modal.onclick = e => {
   if (e.target === modal) closeModal();
 };
+
 
 
 
