@@ -61,30 +61,30 @@ function moveNoButton(e) {
   let dy = btnCenterY - mouseY;
 
   const distance = Math.sqrt(dx * dx + dy * dy) || 1;
+  const safeDistance = 140;
 
-  const safeDistance = 120;
-
-  // Only run if the cursor is close
   if (distance > safeDistance) return;
 
   dx /= distance;
   dy /= distance;
 
-  // 👟 Smaller steps = visible running
-  const step = 60;
+  const step = 80;
 
   let newX = btnCenterX + dx * step - btnRect.width / 2;
   let newY = btnCenterY + dy * step - btnRect.height / 2;
 
-  const padding = 20;
+  const padding = 30;
+
+  const minX = padding;
+  const minY = padding;
   const maxX = window.innerWidth - btnRect.width - padding;
   const maxY = window.innerHeight - btnRect.height - padding;
 
-  newX = Math.max(padding, Math.min(newX, maxX));
-  newY = Math.max(padding, Math.min(newY, maxY));
+  newX = Math.min(Math.max(newX, minX), maxX);
+  newY = Math.min(Math.max(newY, minY), maxY);
 
-  noBtn.style.left = newX + "px";
-  noBtn.style.top = newY + "px";
+  noBtn.style.left = `${newX}px`;
+  noBtn.style.top = `${newY}px`; 
 }
   
   
@@ -184,6 +184,7 @@ closeImage.onclick = closeModal;
 modal.onclick = e => {
   if (e.target === modal) closeModal();
 };
+
 
 
 
