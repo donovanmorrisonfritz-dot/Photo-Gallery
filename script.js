@@ -68,7 +68,7 @@ function moveNoButton(e) {
   dx /= distance;
   dy /= distance;
 
-  const step = 80;
+  const step = 40;
 
   let newX = btnCenterX + dx * step - btnRect.width / 2;
   let newY = btnCenterY + dy * step - btnRect.height / 2;
@@ -184,6 +184,7 @@ closeImage.onclick = closeModal;
 modal.onclick = e => {
   if (e.target === modal) closeModal();
 };
+
 
 
 
