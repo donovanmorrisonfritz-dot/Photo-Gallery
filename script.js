@@ -43,7 +43,8 @@ enterBtn.onclick = () => {
     positionNoButtonBesideYes();
     setTimeout(() => {
       noCanRun = true;
-    });
+    },1500);
+});
 };
 
 // TYPE EFFECT
@@ -112,15 +113,7 @@ function moveNoButton(e) {
   noBtn.style.top = `${newY}px`; 
 }
   
-  
-// Center No button initially
-function centerNoButton() {
-  const yesRect = yesBtn.getBoundingClientRect();
-  noBtn.style.left = yesRect.right + 30 + "px";
-  noBtn.style.top = yesRect.top + "px";
-}
 
-centerNoButton();
 
 
 noBtn.addEventListener("mousemove", moveNoButton);
@@ -208,6 +201,7 @@ closeImage.onclick = closeModal;
 modal.onclick = e => {
   if (e.target === modal) closeModal();
 };
+
 
 
 
