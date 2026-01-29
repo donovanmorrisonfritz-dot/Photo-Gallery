@@ -1,4 +1,4 @@
-// PAGE ELEMENTS
+// ===== PAGE ELEMENTS =====
 const intro = document.getElementById("intro");
 const valentine = document.getElementById("valentine");
 const letter = document.getElementById("letter");
@@ -10,17 +10,17 @@ const backBtn = document.getElementById("backBtn");
 
 const question = document.getElementById("question");
 
-// MODAL ELEMENTS
+// ===== MODAL =====
 const modal = document.getElementById("imageModal");
 const modalImg = document.getElementById("modalImg");
 const modalText = document.getElementById("modalText");
 const modalCaption = document.getElementById("modalCaption");
 const closeImage = document.getElementById("closeImage");
 
-// LETTER
+// ===== LETTER =====
 const letterBox = document.getElementById("letterBox");
 
-// CONFETTI
+// ===== CONFETTI =====
 const canvas = document.getElementById("confetti");
 const ctx = canvas.getContext("2d");
 
@@ -28,26 +28,7 @@ let pieces = [];
 let confettiInterval;
 let noCanRun = false;
 
-// PAGE FLOW
-enterBtn.onclick = () => {
-  intro.classList.remove("active");
-  valentine.classList.add("active");
-  typeText();
-
-  noCanRun = false; 
-
-  noBtn.style.left = "0px";
-  noBtn.style.top = "0px";
-
-  requestAnimationFrame(() =>{ 
-    positionNoButtonBesideYes();
-    setTimeout(() => {
-      noCanRun = true;
-    },1500);
-});
-};
-
-// TYPE EFFECT
+// ===== TYPE EFFECT =====
 const text = "Will you be my Valentine? 💘";
 
 function typeText() {
@@ -59,66 +40,87 @@ function typeText() {
     if (i >= text.length) clearInterval(interval);
   }, 80);
 }
-function positionNoButtonBesideYes() {
-  const yesRect = yesBtn.getBoundingClientRect();
 
-  const gap = 140; // match your CSS gap
+// ===== BUTTON POSITIONING =====
+function positionButtons() {
+  const container = document.querySelector(".buttons");
+  const rect = container.getBoundingClientRect();
 
-  const noX = yesRect.right + gap;
-  const noY = yesRect.top;
+  const gap = 160;
+  const y = rect.top + 20;
 
-  noBtn.style.left = `${noX}px`;
-  noBtn.style.top = `${noY}px`;
+  const centerX = window.innerWidth / 2;
+
+  yesBtn.style.position = "fixed";
+  yesBtn.style.left = `${centerX - yesBtn.offsetWidth - gap / 2}px`;
+  yesBtn.style.top = `${y}px`;
+
+  noBtn.style.position = "fixed";
+  noBtn.style.left = `${centerX + gap / 2}px`;
+  noBtn.style.top = `${y}px`;
 }
 
-// RUNAWAY NO BUTTON
+// ===== PAGE FLOW =====
+enterBtn.onclick = () => {
+  intro.classList.remove("active");
+  valentine.classList.add("active");
+  typeText();
+
+  noCanRun = false;
+
+  // reset before positioning
+  noBtn.style.left = "0px";
+  noBtn.style.top = "0px";
+
+  // allow layout + transforms to settle
+  setTimeout(() => {
+    positionButtons();
+    noCanRun = true;
+  }, 60);
+};
+
+// ===== RUNAWAY NO BUTTON =====
 function moveNoButton(e) {
   if (!noCanRun) return;
- 
-  const btnRect = noBtn.getBoundingClientRect();
+
+  const rect = noBtn.getBoundingClientRect();
 
   const mouseX = e.clientX;
   const mouseY = e.clientY;
 
-  const btnCenterX = btnRect.left + btnRect.width / 2;
-  const btnCenterY = btnRect.top + btnRect.height / 2;
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
 
-  let dx = btnCenterX - mouseX;
-  let dy = btnCenterY - mouseY;
+  let dx = centerX - mouseX;
+  let dy = centerY - mouseY;
 
-  const distance = Math.sqrt(dx * dx + dy * dy) || 1;
-  const safeDistance = 140;
+  const distance = Math.sqrt(dx * dx + dy * dy);
+  const triggerDistance = 140;
 
-  if (distance > safeDistance) return;
+  if (distance > triggerDistance) return;
 
   dx /= distance;
   dy /= distance;
 
-  const step = 40;
+  const step = 60;
 
-  let newX = btnCenterX + dx * step - btnRect.width / 2;
-  let newY = btnCenterY + dy * step - btnRect.height / 2;
+  let newX = centerX + dx * step - rect.width / 2;
+  let newY = centerY + dy * step - rect.height / 2;
 
   const padding = 30;
+  const maxX = window.innerWidth - rect.width - padding;
+  const maxY = window.innerHeight - rect.height - padding;
 
-  const minX = padding;
-  const minY = padding;
-  const maxX = window.innerWidth - btnRect.width - padding;
-  const maxY = window.innerHeight - btnRect.height - padding;
-
-  newX = Math.min(Math.max(newX, minX), maxX);
-  newY = Math.min(Math.max(newY, minY), maxY);
+  newX = Math.max(padding, Math.min(newX, maxX));
+  newY = Math.max(padding, Math.min(newY, maxY));
 
   noBtn.style.left = `${newX}px`;
-  noBtn.style.top = `${newY}px`; 
+  noBtn.style.top = `${newY}px`;
 }
-  
-
-
 
 noBtn.addEventListener("mousemove", moveNoButton);
 
-// CONFETTI
+// ===== CONFETTI =====
 function resizeCanvas() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -148,7 +150,7 @@ function drawConfetti() {
   });
 }
 
-// YES BUTTON
+// ===== YES BUTTON =====
 yesBtn.onclick = () => {
   canvas.style.display = "block";
   makeConfetti();
@@ -162,35 +164,33 @@ yesBtn.onclick = () => {
   }, 2500);
 };
 
-// BACK BUTTON
+// ===== BACK BUTTON =====
 backBtn.onclick = () => {
   letter.classList.remove("active");
   intro.classList.add("active");
 };
 
-// PHOTO MODAL
+// ===== PHOTO MODAL =====
 document.querySelectorAll(".gallery img").forEach(img => {
   img.onclick = () => {
     modal.style.display = "flex";
     modalImg.style.display = "block";
     modalText.style.display = "none";
-
     modalImg.src = img.src;
     modalCaption.textContent = img.dataset.caption;
   };
 });
 
-// LETTER MODAL
+// ===== LETTER MODAL =====
 letterBox.onclick = () => {
   modal.style.display = "flex";
   modalImg.style.display = "none";
   modalText.style.display = "block";
-
   modalText.innerHTML = letterBox.innerHTML;
   modalCaption.textContent = "My Love Letter 💌";
 };
 
-// CLOSE MODAL
+// ===== CLOSE MODAL =====
 function closeModal() {
   modal.style.display = "none";
   modalImg.src = "";
@@ -201,18 +201,4 @@ closeImage.onclick = closeModal;
 modal.onclick = e => {
   if (e.target === modal) closeModal();
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
