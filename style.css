@@ -91,28 +91,21 @@ button {
 }
 
 #yesBtn {
-  position: static;
   background: #ff4d6d;
   color: white;
+  pointer-events: auto;
 }
 
 #noBtn {
   background: #ffb3c1;
   color: white;
-  position: fixed;
-  max-width: 120px;
-  z-indez: 999;
+  z-index: 999;
+  pointer-events: auto;
 }
 
 /* BUTTON CONTAINER */
 .buttons {
-  position: fixed;
-  bottom: 120px;
-  left: 50%;
-  transform: translate(-50%,);
-  display: flex;
-  gap: 140px;
-  z-index: 5;
+  pointer-events: none;
   
 }
 
@@ -191,6 +184,7 @@ button {
   z-index: 9999;
   display: none;
 }
+
 
 
 
