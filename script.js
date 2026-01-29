@@ -26,13 +26,16 @@ const ctx = canvas.getContext("2d");
 
 let pieces = [];
 let confettiInterval;
+let noCanRun = false;
 
 // PAGE FLOW
 enterBtn.onclick = () => {
   intro.classList.remove("active");
   valentine.classList.add("active");
   typeText();
-  setTimeout(positionNoButtonBesideYes, 50);
+  setTimeout(() => {
+    noCanRun = true;
+  }, 1500);
 };
 
 // TYPE EFFECT
@@ -61,6 +64,8 @@ function positionNoButtonBesideYes() {
 
 // RUNAWAY NO BUTTON
 function moveNoButton(e) {
+  if (!noCanRun) return;
+ 
   const btnRect = noBtn.getBoundingClientRect();
 
   const mouseX = e.clientX;
@@ -111,7 +116,6 @@ centerNoButton();
 
 
 noBtn.addEventListener("mousemove", moveNoButton);
-document.addEventListener("mouseenter", moveNoButton);
 
 // CONFETTI
 function resizeCanvas() {
@@ -196,6 +200,7 @@ closeImage.onclick = closeModal;
 modal.onclick = e => {
   if (e.target === modal) closeModal();
 };
+
 
 
 
