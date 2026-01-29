@@ -190,7 +190,7 @@ button {
 .hearts {
   position: fixed;
   inset: 0;
-  overflow: hidden;
+  overflow: visible; /* let hearts go outside the container */
   z-index: 0;
   pointer-events: none;
 }
@@ -198,40 +198,35 @@ button {
 /* HEART LAYERS */
 .hearts::before,
 .hearts::after {
-  content: "💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘
-    💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘
-    💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘
-    💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘";
+  content: "💖 💕 💗 💓 💘💖 💕 💗 💓 💘💖 💕 💗 💓 💘💖 💕 💗 💓 💘💖 💕 💗 💓 💘💖 💕 💗 💓 💘"; /* you can repeat if you want more */
   position: absolute;
-  top: 0;
-  left: 0vw;
-  width: 200vw;
-
+  bottom: 0;           /* start at the bottom */
+  left: 50%;           /* center horizontally */
+  transform: translateX(-50%) translateY(0); /* center the hearts */
   font-size: 36px;
-  line-height: 3;
+  line-height: 1.5;
   opacity: 0.25;
-  white-space: normal;
-
-  /* 🚨 THIS is the real fix */
-  transform: translateY(100vh);
+  white-space: nowrap;
   animation: floatHearts 10s linear infinite;
 }
 
 .hearts::after {
   font-size: 44px;
   opacity: 0.15;
-  animation-duration: 10s;
+  animation-duration: 12s; /* slightly different speed */
 }
 
-/* MOVE FROM BOTTOM → PAST TOP */
+/* FLOAT UP */
 @keyframes floatHearts {
-  from {
-    transform: translateY(100vh);
+  0% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 0.25;
   }
-  to {
-    transform: translateY(-300vh);
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(-50%) translateY(-100vh); /* move up off screen */
+    opacity: 0;
   }
 }
-
-
-
