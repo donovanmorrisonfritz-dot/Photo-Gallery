@@ -198,7 +198,7 @@ button {
 /* HEART LAYERS */
 .hearts::before,
 .hearts::after {
-  content: "💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘";
+  content: "💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘 💖 💕 💗 💓 💘";
   position: absolute;
   top: 0;
   left: -50vw;
@@ -217,7 +217,7 @@ button {
 .hearts::after {
   font-size: 44px;
   opacity: 0.15;
-  animation-duration: 45s;
+  animation-duration: 10s;
 }
 
 /* MOVE FROM BOTTOM → PAST TOP */
@@ -229,3 +229,4 @@ button {
     transform: translateY(-300vh);
   }
 }
+
