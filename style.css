@@ -107,11 +107,11 @@ button {
 /* BUTTON CONTAINER */
 .buttons {
   position: fixed;
-  top: 50%;
+  bottom: 120px;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%,);
   display: flex;
-  gap: 80px;
+  gap: 140px;
   z-index: 5;
   
 }
@@ -191,6 +191,7 @@ button {
   z-index: 9999;
   display: none;
 }
+
 
 
 
